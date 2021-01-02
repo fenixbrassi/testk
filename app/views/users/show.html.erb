@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shortest_path.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @shortest_path.description %>
+</p>
+
+<p>
+  <strong>Shortestpath:</strong>
+  <%= @shortest_path.shortestpath %>
+</p>
+
+<%= link_to 'Edit', edit_shortest_path_path(@shortest_path) %> |
+<%= link_to 'Back', shortest_paths_path %>

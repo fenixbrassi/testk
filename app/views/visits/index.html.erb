@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Visits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ip conn</th>
+      <th>,</th>
+      <th>User agent</th>
+      <th>,</th>
+      <th>Operating system</th>
+      <th>,</th>
+      <th>Amount visits</th>
+      <th>,</th>
+      <th>Shortest path</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td><%= visit.ip_conn %></td>
+        <td><%= visit., %></td>
+        <td><%= visit.user_agent %></td>
+        <td><%= visit., %></td>
+        <td><%= visit.operating_system %></td>
+        <td><%= visit., %></td>
+        <td><%= visit.amount_visits %></td>
+        <td><%= visit., %></td>
+        <td><%= visit.shortest_path_id %></td>
+        <td><%= link_to 'Show', visit %></td>
+        <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
+        <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Visit', new_visit_path %>

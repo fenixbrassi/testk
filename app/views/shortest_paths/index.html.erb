@@ -1,0 +1,130 @@
+<p id="notice"><%= notice %></p>
+<% shortest_path = ShortestPath.new %>
+<% shortest_path.shortestpath = (0...6).map { ('a'..'z').to_a[rand(26)] }.join %>
+
+<%= form_with(model: shortest_path, local: true) do |form| %>
+  <% if shortest_path.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shortest_path.errors.count, "error") %> prohibited this shortest_path from being saved:</h2>
+
+      <ul>
+        <% shortest_path.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :full_url %>
+    <%= form.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <div class="field" style="visibility:hidden">
+    <%= form.label :shortestpath %>
+    <%= form.text_field :shortestpath ,:readonly => true  %>
+  </div>
+
+
+<% end %>
+
+
+
+
+
+
+<h1>Shortest Paths</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Full URL</th>
+      <th>Shortestpath</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @shortest_paths.each do |shortest_path| %>
+      <tr>
+        <td><%= shortest_path.name %></td>
+        <td><%= shortest_path.description %></td>
+        <td><%= shortest_path.shortestpath %></td>
+        <td><%= link_to 'Detail', detail_shortest_path_path(shortest_path) %></td>
+        <td><%= link_to 'Edit', edit_shortest_path_path(shortest_path) %></td>
+        <td><%= link_to 'Destroy', shortest_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><a onclick=" document.getElementById('copyTarget').value =  '<%= request.base_url + "/" + shortest_path.shortestpath  %>' ; copyToClipboard(document.getElementById('copyTarget'));">Share</a></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<h1>Last Shared Link</h1>
+<input type="text" id="copyTarget" readonly> <button id="copyButton">Copy</button><br><br>
+
+<script>
+  document.getElementById("copyButton").addEventListener("click", function() {
+    copyToClipboard(document.getElementById("copyTarget"));
+});
+
+function copyToClipboard(elem) {
+	  // create hidden text element, if it doesn't already exist
+    var targetId = "_hiddenCopyText_";
+    var isInput = elem.tagName === "INPUT" || elem.tagName === "TEXTAREA";
+    var origSelectionStart, origSelectionEnd;
+    if (isInput) {
+        // can just use the original source element for the selection and copy
+        target = elem;
+        origSelectionStart = elem.selectionStart;
+        origSelectionEnd = elem.selectionEnd;
+    } else {
+        // must use a temporary form element for the selection and copy
+        target = document.getElementById(targetId);
+        if (!target) {
+            var target = document.createElement("textarea");
+            target.style.position = "absolute";
+            target.style.left = "-9999px";
+            target.style.top = "0";
+            target.id = targetId;
+            document.body.appendChild(target);
+        }
+        target.textContent = elem.textContent;
+    }
+    // select the content
+    var currentFocus = document.activeElement;
+    target.focus();
+    target.setSelectionRange(0, target.value.length);
+
+    // copy the selection
+    var succeed;
+    try {
+    	  succeed = document.execCommand("copy");
+    } catch(e) {
+        succeed = false;
+    }
+    // restore original focus
+    if (currentFocus && typeof currentFocus.focus === "function") {
+        currentFocus.focus();
+    }
+
+    if (isInput) {
+        // restore prior selection
+        elem.setSelectionRange(origSelectionStart, origSelectionEnd);
+    } else {
+        // clear temporary content
+        target.textContent = "";
+    }
+    return succeed;
+}
+</script>

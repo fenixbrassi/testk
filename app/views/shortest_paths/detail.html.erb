@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @shortest_path.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @shortest_path.description %>
+</p>
+
+<p>
+  <strong>Shortestpath:</strong>
+  <%= @shortest_path.shortestpath %>
+</p>
+
+<p>
+  <strong>Details<strong>
+    <table class="table100 ver1">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>User Agent</th>
+          <th>Opertin System</th>
+          <th>Amount Visits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @shortest_path.visits.each do |detail| %>
+          <tr>
+            <td><%= detail.ip_conn %></td>
+            <td><%= detail.user_agent %></td>
+            <td><%= detail.operating_system %></td>
+            <td><%= detail.amount_visits %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+
+</p>
+
+
+<%= link_to 'Back', shortest_paths_path %>
