@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_01_02_183308) do
 
-  create_table "shortest_paths", force: :cascade do |t|
+  create_table "shortest_paths", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "shortestpath"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_183308) do
     t.integer "user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "email"
     t.string "password_digest"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_01_02_183308) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "visits", force: :cascade do |t|
+  create_table "visits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "ip_conn"
     t.string "user_agent"
     t.string "operating_system"

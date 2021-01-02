@@ -5953,3 +5953,332 @@ Processing by ShortestPathsController#index as HTML
 Completed 200 OK in 107ms (Views: 13.5ms | ActiveRecord: 9.1ms | Allocations: 15909)
 
 
+  [1m[35m (60.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (109.7ms)[0m  [1m[35mCREATE DATABASE `testk_development` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (4.7ms)[0m  [1m[35mCREATE DATABASE `testk_test` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.8ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (83.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (43.4ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT GET_LOCK('4036996961549764905', 0)[0m
+  [1m[35m (55.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateUsers (20210102143624)
+  [1m[35m (56.4ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `password_digest` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (35.5ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (3.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20210102143624')[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateShortestPaths (20210102152132)
+  [1m[35m (48.3ms)[0m  [1m[35mCREATE TABLE `shortest_paths` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `description` varchar(255), `shortestpath` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20210102152132')[0m
+  [1m[35m (50.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateVisits (20210102174907)
+  [1m[35m (59.4ms)[0m  [1m[35mCREATE TABLE `visits` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `ip_conn` varchar(255), `user_agent` varchar(255), `operating_system` varchar(255), `amount_visits` int, `shortest_path_id` int, `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20210102174907')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserIdToShortestPaths (20210102183308)
+  [1m[35m (47.1ms)[0m  [1m[35mALTER TABLE `shortest_paths` ADD `user_id` int[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20210102183308')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2021-01-02 20:57:57.047533', '2021-01-02 20:57:57.047533')[0m
+  [1m[35m (40.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT RELEASE_LOCK('4036996961549764905')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Started GET "/" for 127.0.0.1 at 2021-01-02 14:58:12 -0600
+  [1m[35m (0.9ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 13.6ms | Allocations: 3776)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 20.3ms | Allocations: 3067)
+Completed 200 OK in 83ms (Views: 73.2ms | ActiveRecord: 1.8ms | Allocations: 15095)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2021-01-02 14:58:15 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1958)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.5ms | Allocations: 675)
+Completed 200 OK in 30ms (Views: 28.6ms | ActiveRecord: 0.4ms | Allocations: 6597)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2021-01-02 14:58:16 -0600
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 3.0ms | Allocations: 1283)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.7ms | Allocations: 668)
+Completed 200 OK in 23ms (Views: 12.5ms | ActiveRecord: 2.9ms | Allocations: 9579)
+
+
+Started POST "/users" for 127.0.0.1 at 2021-01-02 14:58:35 -0600
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token"=>"Fp2O88nGbsDsaESHjtSLhBJ+xo3a6HizqM65BgnKZXiITj+37Q8mQGs2Xe/6U5hksa6VPuNtFl6LZT6+ZXqucQ==", "user"=>{"name"=>"Ernesto PC", "email"=>"ernesto.p11@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign Up"}
+DEPRECATION WARNING: Uniqueness validator will no longer enforce case sensitive comparison in Rails 6.1. To continue case sensitive comparison on the :email attribute in User model, pass `case_sensitive: true` option explicitly to the uniqueness validator. (called from create at /Users/ernestoponce/Documents/GitHub/testk/app/controllers/users_controller.rb:11)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Exists? (9.5ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = BINARY 'ernesto.p11@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `password_digest`, `created_at`, `updated_at`) VALUES ('Ernesto PC', 'ernesto.p11@gmail.com', '$2a$12$Eml75LJZ9oI7YdJS0a5SLeHmLvVxd.gSQKJj03R9ESGLtDaHMsd66', '2021-01-02 20:58:35.471626', '2021-01-02 20:58:35.471626')[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:11:in `create'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 303ms (ActiveRecord: 11.4ms | Allocations: 4650)
+
+
+Started GET "/" for 127.0.0.1 at 2021-01-02 14:58:35 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1960)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.8ms | Allocations: 667)
+Completed 200 OK in 16ms (Views: 14.1ms | ActiveRecord: 0.9ms | Allocations: 6617)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:42 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"K5NUg+nH6yQWY2wOdQmv/WvNqStHc0+bzCjdg7GZaxe0ADhosdzSpS5wCe/MdO4fUFjggJDdJRspTYTPzH3D6Q==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1928)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 661)
+Completed 200 OK in 16ms (Views: 10.9ms | ActiveRecord: 0.8ms | Allocations: 7596)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:44 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"K5NUg+nH6yQWY2wOdQmv/WvNqStHc0+bzCjdg7GZaxe0ADhosdzSpS5wCe/MdO4fUFjggJDdJRspTYTPzH3D6Q==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1930)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 661)
+Completed 200 OK in 14ms (Views: 11.2ms | ActiveRecord: 0.7ms | Allocations: 7166)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:45 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"K5NUg+nH6yQWY2wOdQmv/WvNqStHc0+bzCjdg7GZaxe0ADhosdzSpS5wCe/MdO4fUFjggJDdJRspTYTPzH3D6Q==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1928)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 661)
+Completed 200 OK in 11ms (Views: 8.7ms | ActiveRecord: 0.7ms | Allocations: 7148)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:45 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"K5NUg+nH6yQWY2wOdQmv/WvNqStHc0+bzCjdg7GZaxe0ADhosdzSpS5wCe/MdO4fUFjggJDdJRspTYTPzH3D6Q==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1927)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.3ms | Allocations: 661)
+Completed 200 OK in 20ms (Views: 14.5ms | ActiveRecord: 2.6ms | Allocations: 7141)
+
+
+Started GET "/" for 127.0.0.1 at 2021-01-02 14:58:47 -0600
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.5ms | Allocations: 1953)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.6ms | Allocations: 663)
+Completed 200 OK in 13ms (Views: 11.8ms | ActiveRecord: 0.4ms | Allocations: 6590)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:48 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"6wtecdMYl7L3Wt6L6OLpMBoCezBVN2oabEcpSyvP4oB0mDKaiwOuM89Ju2pRn6jSIZcym4KZAJqJInAHVitKfg==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1928)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.4ms | Allocations: 661)
+Completed 200 OK in 14ms (Views: 11.5ms | ActiveRecord: 0.6ms | Allocations: 7159)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:49 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"6wtecdMYl7L3Wt6L6OLpMBoCezBVN2oabEcpSyvP4oB0mDKaiwOuM89Ju2pRn6jSIZcym4KZAJqJInAHVitKfg==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.1ms | Allocations: 1928)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 661)
+Completed 200 OK in 11ms (Views: 8.8ms | ActiveRecord: 0.7ms | Allocations: 7165)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:49 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"6wtecdMYl7L3Wt6L6OLpMBoCezBVN2oabEcpSyvP4oB0mDKaiwOuM89Ju2pRn6jSIZcym4KZAJqJInAHVitKfg==", "email"=>"ernesto.p12@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p12@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.7ms | Allocations: 1926)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.4ms | Allocations: 661)
+Completed 200 OK in 18ms (Views: 15.0ms | ActiveRecord: 1.0ms | Allocations: 7136)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 14:58:52 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"6wtecdMYl7L3Wt6L6OLpMBoCezBVN2oabEcpSyvP4oB0mDKaiwOuM89Ju2pRn6jSIZcym4KZAJqJInAHVitKfg==", "email"=>"ernesto.p11@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`email` = 'ernesto.p11@gmail.com' LIMIT 1[0m
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/shortest_paths
+Completed 200 OK in 289ms (ActiveRecord: 0.4ms | Allocations: 1094)
+
+
+Started GET "/shortest_paths" for 127.0.0.1 at 2021-01-02 14:58:52 -0600
+Processing by ShortestPathsController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mShortestPath Load (0.4ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`user_id` = 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:7:in `sort_by'
+  Rendering shortest_paths/index.html.erb within layouts/application
+  Rendered shortest_paths/index.html.erb within layouts/application (Duration: 13.9ms | Allocations: 5248)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 56)
+Completed 200 OK in 60ms (Views: 21.5ms | ActiveRecord: 4.2ms | Allocations: 14787)
+
+
+Started POST "/shortest_paths" for 127.0.0.1 at 2021-01-02 14:59:03 -0600
+Processing by ShortestPathsController#create as HTML
+  Parameters: {"authenticity_token"=>"4ZGzwFDnVt42MI/t48P0KQi7IRaWr+4iwgkCa4Gt46/p0EqMPn6IMPjI3kCLd++KMOKqo+WRLWrNrWMjk2Qi4w==", "shortest_path"=>{"name"=>"google", "description"=>"http://www.google.com", "shortestpath"=>"wzsbdh"}, "commit"=>"Create Shortest path"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/shortest_paths_controller.rb:36:in `block in create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/shortest_paths_controller.rb:36:in `block in create'
+  [1m[36mShortestPath Create (0.5ms)[0m  [1m[32mINSERT INTO `shortest_paths` (`name`, `description`, `shortestpath`, `created_at`, `updated_at`, `user_id`) VALUES ('google', 'http://www.google.com', 'wzsbdh', '2021-01-02 20:59:03.649946', '2021-01-02 20:59:03.649946', 1)[0m
+  ↳ app/controllers/shortest_paths_controller.rb:36:in `block in create'
+  [1m[35m (40.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/shortest_paths_controller.rb:36:in `block in create'
+Redirected to http://127.0.0.1:3000/shortest_paths/1
+Completed 302 Found in 67ms (ActiveRecord: 42.5ms | Allocations: 5668)
+
+
+Started GET "/shortest_paths/1" for 127.0.0.1 at 2021-01-02 14:59:03 -0600
+Processing by ShortestPathsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mShortestPath Load (0.4ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:74:in `set_shortest_path'
+  Rendering shortest_paths/show.html.erb within layouts/application
+  Rendered shortest_paths/show.html.erb within layouts/application (Duration: 1.6ms | Allocations: 98)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 690)
+Completed 200 OK in 21ms (Views: 15.9ms | ActiveRecord: 1.3ms | Allocations: 5746)
+
+
+Started GET "/shortest_paths" for 127.0.0.1 at 2021-01-02 14:59:06 -0600
+Processing by ShortestPathsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mShortestPath Load (0.7ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`user_id` = 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:7:in `sort_by'
+  Rendering shortest_paths/index.html.erb within layouts/application
+  Rendered shortest_paths/index.html.erb within layouts/application (Duration: 3.5ms | Allocations: 1261)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.1ms | Allocations: 50)
+Completed 200 OK in 21ms (Views: 14.2ms | ActiveRecord: 1.4ms | Allocations: 6747)
+
+
+Started GET "/wzsbdh" for 127.0.0.1 at 2021-01-02 14:59:13 -0600
+Processing by ShortestPathsController#show as HTML
+  Parameters: {"id"=>"wzsbdh"}
+  [1m[36mShortestPath Load (0.7ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`shortestpath` = 'wzsbdh' LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:76:in `set_shortest_path'
+  [1m[36mVisit Load (0.7ms)[0m  [1m[34mSELECT `visits`.* FROM `visits` WHERE `visits`.`ip_conn` = '127.0.0.1' AND `visits`.`shortest_path_id` = 1 LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[36mShortestPath Load (0.4ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[36mVisit Create (0.4ms)[0m  [1m[32mINSERT INTO `visits` (`ip_conn`, `shortest_path_id`, `created_at`, `updated_at`) VALUES ('127.0.0.1', 1, '2021-01-02 20:59:13.207496', '2021-01-02 20:59:13.207496')[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[35m (52.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  [1m[36mVisit Update (47.2ms)[0m  [1m[33mUPDATE `visits` SET `visits`.`user_agent` = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 11_2_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36', `visits`.`operating_system` = 'darwin20.2.0', `visits`.`amount_visits` = 1, `visits`.`updated_at` = '2021-01-02 20:59:13.265935' WHERE `visits`.`id` = 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  Rendering shortest_paths/show.html.erb within layouts/application
+  Rendered shortest_paths/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 6.8ms | Allocations: 683)
+Completed 200 OK in 192ms (Views: 18.9ms | ActiveRecord: 113.1ms | Allocations: 19727)
+
+
+Started GET "/wzsbdh" for 127.0.0.1 at 2021-01-02 14:59:27 -0600
+Processing by ShortestPathsController#show as HTML
+  Parameters: {"id"=>"wzsbdh"}
+  [1m[36mShortestPath Load (1.3ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`shortestpath` = 'wzsbdh' LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:76:in `set_shortest_path'
+  [1m[36mVisit Load (3.9ms)[0m  [1m[34mSELECT `visits`.* FROM `visits` WHERE `visits`.`ip_conn` = '127.0.0.1' AND `visits`.`shortest_path_id` = 1 LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:79:in `set_shortest_path'
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  [1m[36mShortestPath Load (1.2ms)[0m  [1m[34mSELECT `shortest_paths`.* FROM `shortest_paths` WHERE `shortest_paths`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  [1m[36mVisit Update (0.5ms)[0m  [1m[33mUPDATE `visits` SET `visits`.`amount_visits` = 2, `visits`.`updated_at` = '2021-01-02 20:59:27.154468' WHERE `visits`.`id` = 1[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/shortest_paths_controller.rb:84:in `set_shortest_path'
+  Rendering shortest_paths/show.html.erb within layouts/application
+  Rendered shortest_paths/show.html.erb within layouts/application (Duration: 0.1ms | Allocations: 7)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.3ms | Allocations: 683)
+Completed 200 OK in 50ms (Views: 18.5ms | ActiveRecord: 9.4ms | Allocations: 9688)
+
+
