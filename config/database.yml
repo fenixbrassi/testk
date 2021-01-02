@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: testk_production
-  username: testk
+  username: root
+  password: otoviko1982
   password: <%= ENV['testk_DATABASE_PASSWORD'] %>
