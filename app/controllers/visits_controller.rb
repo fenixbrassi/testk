@@ -69,6 +69,6 @@ class VisitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visit_params
-      params.require(:visit).permit(:ip_conn, :,, :user_agent, :,, :operating_system, :,, :amount_visits, :,, :shortest_path_id)
+      params.require(:visit).permit(:ip_conn, :user_agent, :operating_system, :amount_visits, :shortest_path_id)
     end
 end
