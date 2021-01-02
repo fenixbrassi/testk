@@ -6470,3 +6470,37 @@ Processing by ShortestPathsController#index as HTML
 Completed 200 OK in 50ms (Views: 19.2ms | ActiveRecord: 6.7ms | Allocations: 14689)
 
 
+Started GET "/" for 127.0.0.1 at 2021-01-02 16:05:42 -0600
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#new as HTML
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 24.2ms | Allocations: 3776)
+[Webpacker] Everything's up-to-date. Nothing to do
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 116.4ms | Allocations: 6097)
+Completed 200 OK in 329ms (Views: 298.9ms | ActiveRecord: 17.0ms | Allocations: 18124)
+
+
+Started POST "/session" for 127.0.0.1 at 2021-01-02 16:05:50 -0600
+Processing by SessionsController#create as JS
+  Parameters: {"authenticity_token"=>"i3WGv4522IGNjwoUp4jtMx/8YoGRwb5V28VKbuVRI34U5upU1m3hALWcb/Ue9azRJGkrKkZv1NU+oBMimLWLgA==", "email"=>"ernesto.p11@gmail.com", "password"=>"[FILTERED]", "commit"=>"Log In"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "ernesto.p11@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:6:in `create'
+Redirected to http://127.0.0.1:3000/shortest_paths
+Completed 200 OK in 321ms (ActiveRecord: 0.3ms | Allocations: 1237)
+
+
+Started GET "/shortest_paths" for 127.0.0.1 at 2021-01-02 16:05:51 -0600
+Processing by ShortestPathsController#index as HTML
+  [1m[36mUser Load (8.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:8:in `current_user'
+  [1m[36mShortestPath Load (1.0ms)[0m  [1m[34mSELECT "shortest_paths".* FROM "shortest_paths" WHERE "shortest_paths"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/controllers/shortest_paths_controller.rb:7:in `sort_by'
+  Rendering shortest_paths/index.html.erb within layouts/application
+  Rendered shortest_paths/index.html.erb within layouts/application (Duration: 15.7ms | Allocations: 5297)
+[Webpacker] Everything's up-to-date. Nothing to do
+  Rendered layouts/_header.html.erb (Duration: 0.2ms | Allocations: 54)
+Completed 200 OK in 97ms (Views: 22.0ms | ActiveRecord: 19.7ms | Allocations: 14842)
+
+
