@@ -19,7 +19,6 @@ class ShortestPathsController < ApplicationController
   # GET /shortest_paths/new
   def new
     @shortest_path = ShortestPath.new
-    @shortest_path.shortestpath = (0...6).map { ('a'..'z').to_a[rand(26)] }.join
   end
 
   # GET /shortest_paths/1/edit
